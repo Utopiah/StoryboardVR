@@ -1,4 +1,10 @@
 Dive in your drawings, explain to 3D artists your vision then iterate.
 
-
-Video explanation with links to demo https://www.youtube.com/watch?v=KNr7xdc69fU
+TODO
+* complete editor to do all 6 pannels
+* handle N rooms, not just 2
+* offer storyboard down, all rooms with all pannels
+* URL per session to avoid overwrite (currently backing up per unix timestamp)
+* first room as rewritable tutorial
+* get notification on texture update then offer refresh
+* option for automatic refresh e.g. once per second
