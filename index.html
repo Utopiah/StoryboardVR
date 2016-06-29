@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<!--
+	TODO
+		complete editor to do all 6 pannels
+		handle N rooms, not just 2
+		offer storyboard down, all rooms with all pannels
+		URL per session to avoid overwrite
+		first room as rewritable tutorial
+		get notification on texture update then offer refresh
+		option for automatic refresh e.g. once per second
+-->
+<meta name="robots" content="noindex">
+  <head>
+    <title>Storyboarding  with live online editor</title>
+    <meta name="description" content="Storyboarding with live online editor">
+    <script src="aframe-v0.2.0.min.js"></script>
+    <script src="aframe-text-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+    <a-assets></a-assets>
+    <a-entity position="0 2 0" camera id="camera" look-controls="enabled: true">
+      <a-cursor color="blue"></a-cursor>
+    </a-entity>
+    <a-sky color="blue"></a-sky>
+      
+    <a-plane position="-3 -3 -2" id="next" rotation="-45 0 0" color="red"></a-plane>
+    <a-plane position="3 -3 -2" id="refresh" rotation="-45 0 0" color="green"></a-plane>
+           
+    <a-plane position="0 0 -5" id="planeFront"  rotation="  0 0 0" scale="10 10 10"></a-plane>
+    <a-plane position="0 0 5" id="planeBack"   rotation="0 180 0" scale="10 10 10"></a-plane>
+    <a-plane position="-5 0 0" id="planeLeft"   rotation="0 90 0" scale="10 10 10"></a-plane>
+    <a-plane position=" 5 0 0" id="planeRight"  rotation="0 -90 0" scale="10 10 10"></a-plane>
+    <a-plane position="0 5 0" id="planeTop" rotation="90 0 0" scale="10 10 10"></a-plane>
+    <a-plane position="0 -5 0" id="planeBottom"    rotation="-90 0 0" scale="10 10 10"></a-plane>
+    
+    </a-scene>
+ 
+    <script>
+      
+      /* TODO
+          struct Rooms/1/front.jpg
+      */
+      
+      var rootURL = "./Rooms/";
+      var roomNumber = 2;
+      var currentRoom = 0;
+      var faces = ['Front','Back','Bottom','Top','Left','Right'];
+      var extension = '.png';
+      
+      var scene = document.querySelector('a-scene');
+      if (scene.hasLoaded) {
+        run();
+      } else {
+        scene.addEventListener('loaded', run);
+      }
+      function run () {
+        
+        if (currentRoom < roomNumber){
+          currentRoom++;
+          
+          var arrayLength = faces.length;
+          for (var i = 0; i < arrayLength; i++) {
+            var currentFace = document.getElementById('plane'+faces[i]);
+            currentFace.setAttribute("src",rootURL+currentRoom+'/'+faces[i]+extension);
+          }
+        }
+        
+        var item = document.getElementById('next');
+        item.addEventListener('mouseenter', function() {
+          console.log('switching room');
+          if (currentRoom < roomNumber){
+            currentRoom++;
+            console.log(currentRoom);
+            var arrayLength = faces.length;
+            for (var i = 0; i < arrayLength; i++) {
+              var currentFace = document.getElementById('plane'+faces[i]);
+              currentFace.setAttribute("src",rootURL+currentRoom+'/'+faces[i]+extension);
+            }
+          }
+        });
+          
+        var item = document.getElementById('refresh');
+        item.addEventListener('mouseenter', function() {
+          console.log('refreshing room'+currentRoom);
+            var arrayLength = faces.length;
+            for (var i = 0; i < arrayLength; i++) {              
+              var currentFace = document.getElementById('plane'+faces[i]);
+              currentFace.setAttribute("src",rootURL+currentRoom+'/'+faces[i]+extension+'?timestamp='+Date.now());
+              console.log("changing src of plane"+faces[i]+" to "+rootURL+currentRoom+'/'+faces[i]+extension+'?timestamp='+Date.now());
+            }
+        });
+      }
+      
+    </script>
+
+</body>
+</html>
