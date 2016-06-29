@@ -16,3 +16,4 @@ See for details [see the video](https://www.youtube.com/watch?v=KNr7xdc69fU).
 - get notification on texture update then offer refresh
 - option for automatic refresh e.g. once per second
 - in VR drawing on canvas
+- adding elements with position as texture on cubes
