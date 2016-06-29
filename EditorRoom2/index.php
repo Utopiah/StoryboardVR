@@ -31,10 +31,20 @@
 	ajax.send(canvasData);
   }
 
+  var img1 = new Image();
+  var ctx = document.getElementById('colors_sketch');
+  if (ctx.getContext) {
+	ctx = ctx.getContext('2d');
+	//drawing of the test image - img1
+	img1.onload = function () {
+		//draw background image
+		ctx.drawImage(img1, 0, 0);
+	};
+	img1.src = '../Rooms/2/Front.png';
+  }
+
 </script>
 </div>
 
-
-Using http://intridea.github.io/sketch.js/ and https://permadi.com/2010/10/html5-saving-canvas-image-data-using-php-and-ajax/
 </body>
 </html>
