@@ -17,3 +17,4 @@ See for details [see the video](https://www.youtube.com/watch?v=KNr7xdc69fU).
 - option for automatic refresh e.g. once per second
 - in VR drawing on canvas
 - adding elements with position as texture on cubes
+- use [buildSceneFromCanvas()](http://www.loganfamily.karoo.net/logo/index.html) and get a goemetry back e.g. draw a height map, get a world back
