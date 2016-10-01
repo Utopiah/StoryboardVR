@@ -1,8 +1,9 @@
 <html>
+<title>2D sketchpad for VR storyboard by @Utopiah</title>
 <script src="jquery-3.0.0.min.js"></script>
 <script src="sketch.min.js"></script>
+<script src="https://togetherjs.com/togetherjs-min.js"></script>
 <body>
-
 <script type="text/javascript">
 function saveAllFaces(){
 	var faces = ["front", "right"];
@@ -19,13 +20,11 @@ function saveViaAJAX(side){
 	ajax.send(canvasData);
 }
 </script>
-
-<h1>2D sketchpad for VR storyboard by @Utopiah</h1>
+<button onclick="saveAllFaces();">Save all faces</button>
+<button onclick="TogetherJS(this); return false;">Collaborate</button>
 <table>
 <tr>
 <td>
-
-<button onclick="saveAllFaces();">Save all faces</button>
 <div id="front">
 <div class="tools">
 <button onclick="saveViaAJAX('front');">Save</button>
@@ -71,7 +70,9 @@ function saveViaAJAX(side){
 </div>
 
 </td><td>
-Preview :
+<h1>2D sketchpad for VR storyboard by @Utopiah</h1>
+
+<h2>Preview :</h2>
 
 <iframe src="http://vatelier.net/MyDemo/Storyboard/"></a>
 </td>
