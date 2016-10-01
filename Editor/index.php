@@ -3,14 +3,32 @@
 <script src="sketch.min.js"></script>
 <body>
 
+<script type="text/javascript">
+function saveAllFaces(){
+	var faces = ["front", "right"];
+	for (var i=0; i<faces.length;i++){
+		saveViaAJAX(faces[i]);
+	}
+}
+function saveViaAJAX(side){
+	var canvas = document.getElementById(side+"_sketch");
+	var canvasData = canvas.toDataURL("image/png");
+	var ajax = new XMLHttpRequest();
+	ajax.open("POST",'Save_'+side+'.php',false);
+	ajax.setRequestHeader('Content-Type', 'application/upload');
+	ajax.send(canvasData);
+}
+</script>
+
 <h1>2D sketchpad for VR storyboard by @Utopiah</h1>
 <table>
 <tr>
 <td>
 
+<button onclick="saveAllFaces();">Save all faces</button>
 <div id="front">
 <div class="tools">
-<button onclick="saveViaAJAX_front();">Save</button>
+<button onclick="saveViaAJAX('front');">Save</button>
 </div>
 <h2>Front</h2>
 <canvas style="border:1px solid #000000;" id="front_sketch" width="512" height="512"></canvas>
@@ -24,14 +42,6 @@
     });
     $('#front_sketch').sketch();
   });
- function saveViaAJAX_front(){
-	var canvas = document.getElementById("front_sketch");
-	var canvasData = canvas.toDataURL("image/png");
-	var ajax = new XMLHttpRequest();
-	ajax.open("POST",'Save_front.php',false);
-	ajax.setRequestHeader('Content-Type', 'application/upload');
-	ajax.send(canvasData);
-  }
 </script>
 </br>
   <a href="#front_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
@@ -41,7 +51,7 @@
 
 <div id="right">
 <div class="tools">
-<button onclick="saveViaAJAX_right();">Save</button>
+<button onclick="saveViaAJAX('right');">Save</button>
 </div>
 <h2>Right</h2>
 <canvas style="border:1px solid #000000;" id="right_sketch" width="512" height="512"></canvas>
@@ -55,23 +65,18 @@
     });
     $('#right_sketch').sketch();
   });
- function saveViaAJAX_right(){
-	var canvas = document.getElementById("right_sketch");
-	var canvasData = canvas.toDataURL("image/png");
-	var ajax = new XMLHttpRequest();
-	ajax.open("POST",'Save_right.php',false);
-	ajax.setRequestHeader('Content-Type', 'application/upload');
-	ajax.send(canvasData);
-  }
 </script>
 </br>
   <a href="#right_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
 </div>
 
+</td><td>
+Preview :
+
+<iframe src="http://vatelier.net/MyDemo/Storyboard/"></a>
 </td>
 </tr>
 </table>
-
 <!--
 Using http://intridea.github.io/sketch.js/ and https://permadi.com/2010/10/html5-saving-canvas-image-data-using-php-and-ajax/
 -->
