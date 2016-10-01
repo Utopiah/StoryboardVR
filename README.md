@@ -1,5 +1,7 @@
 Dive in your drawings, explain to 3D artists your vision then iterate.
 
+![Interface example with live collaboration](http://vatelier.net/MyDemo/Storyboard/preview.jpg)
+
 ## How can I use it
 - visit [the viewer](http://vatelier.net/MyDemo/Storyboard/) , look around
 - put the cursor on the green plane to refresh content, assuming you or somebody else saved a new image
