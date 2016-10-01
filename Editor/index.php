@@ -10,6 +10,7 @@ function saveAllFaces(){
 	for (var i=0; i<faces.length;i++){
 		saveViaAJAX(faces[i]);
 	}
+	refreshPreview();
 }
 function saveViaAJAX(side){
 	var canvas = document.getElementById(side+"_sketch");
@@ -18,6 +19,9 @@ function saveViaAJAX(side){
 	ajax.open("POST",'Save_'+side+'.php',false);
 	ajax.setRequestHeader('Content-Type', 'application/upload');
 	ajax.send(canvasData);
+}
+function refreshPreview(){
+	document.getElementById('preview').src = document.getElementById('preview').src;
 }
 </script>
 <button onclick="saveAllFaces();">Save all faces</button>
@@ -69,12 +73,14 @@ function saveViaAJAX(side){
   <a href="#right_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
 </div>
 
-</td><td>
+</td><td valign="top">
 <h1>2D sketchpad for VR storyboard by @Utopiah</h1>
 
 <h2>Preview :</h2>
 
-<iframe src="http://vatelier.net/MyDemo/Storyboard/"></a>
+<iframe id="preview" src="http://vatelier.net/MyDemo/Storyboard/"></iframe>
+<button onclick="refreshPreview();">Refresh</button>
+<a href="http://vatelier.net/MyDemo/Storyboard/" target="_blank">Fullscreen</a>
 </td>
 </tr>
 </table>
