@@ -19,6 +19,7 @@ function saveViaAJAX(side){
 	ajax.open("POST",'Save_'+side+'.php',false);
 	ajax.setRequestHeader('Content-Type', 'application/upload');
 	ajax.send(canvasData);
+	refreshPreview();
 }
 function refreshPreview(){
 	document.getElementById('preview').src = document.getElementById('preview').src;
@@ -48,6 +49,7 @@ function refreshPreview(){
 </script>
 </br>
   <a href="#front_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
+  <a href="notImplementedYet" style="float: right; width: 100px;">Upload</a>
 </div>
 
 </td><td>
@@ -71,6 +73,7 @@ function refreshPreview(){
 </script>
 </br>
   <a href="#right_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
+  <a href="notImplementedYet" style="float: right; width: 100px;">Upload</a>
 </div>
 
 </td><td valign="top">
@@ -78,9 +81,13 @@ function refreshPreview(){
 
 <h2>Preview :</h2>
 
-<iframe id="preview" src="http://vatelier.net/MyDemo/Storyboard/"></iframe>
+<iframe id="preview" src="http://vatelier.net/MyDemo/Storyboard/?ui=false" width="100%" height="400px"></iframe>
+<br/>
 <button onclick="refreshPreview();">Refresh</button>
+<br/>
 <a href="http://vatelier.net/MyDemo/Storyboard/" target="_blank">Fullscreen</a>
+<br/>
+<a href="mailto:collaborator@iso.tld?subject=Storyboard&body=Please%20%try%20http://vatelier.net/MyDemo/Storyboard/" target="_blank">share via email</a> (warning, open in the same window)
 </td>
 </tr>
 </table>

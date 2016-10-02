@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+<meta charset="UTF-8"> 
 <meta name="robots" content="noindex">
   <head>
     <title>Storyboarding  with live online editor</title>
@@ -12,6 +13,8 @@
     <a-assets></a-assets>
     <a-entity position="0 2 0" camera id="camera" look-controls="enabled: true">
       <a-cursor color="blue"></a-cursor>
+	<a-animation attribute="rotation" to="0 360 0" dur="-36000" begin="rotate" easing="linear">
+	</a-animation>
     </a-entity>
     <a-sky color="blue"></a-sky>
       
@@ -56,6 +59,9 @@
             currentFace.setAttribute("src",rootURL+currentRoom+'/'+faces[i]+extension);
           }
         }
+        document.addEventListener("dblclick", function rotateAll(){
+			document.getElementById('camera').emit("rotate");
+	});
         
         var item = document.getElementById('next');
         item.addEventListener('mouseenter', function() {
@@ -74,14 +80,20 @@
         var item = document.getElementById('refresh');
         item.addEventListener('mouseenter', function() {
           console.log('refreshing room'+currentRoom);
-            var arrayLength = faces.length;
-            for (var i = 0; i < arrayLength; i++) {              
-              var currentFace = document.getElementById('plane'+faces[i]);
-              currentFace.setAttribute("src",rootURL+currentRoom+'/'+faces[i]+extension+'?timestamp='+Date.now());
-              console.log("changing src of plane"+faces[i]+" to "+rootURL+currentRoom+'/'+faces[i]+extension+'?timestamp='+Date.now());
-            }
+	  forceRefresh();
         });
+
+	forceRefresh();
       }
+
+function forceRefresh(){
+	var arrayLength = faces.length;
+	for (var i = 0; i < arrayLength; i++) {              
+		var currentFace = document.getElementById('plane'+faces[i]);
+		currentFace.setAttribute("src",rootURL+currentRoom+'/'+faces[i]+extension+'?timestamp='+Date.now());
+		console.log("changing src of plane"+faces[i]+" to "+rootURL+currentRoom+'/'+faces[i]+extension+'?timestamp='+Date.now());
+	}
+}
       
     </script>
 
